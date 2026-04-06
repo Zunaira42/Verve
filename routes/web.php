@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\admin\UserController as AdminUserController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Symfony\Component\HttpKernel\HttpCache\Store;
 
 // Route::get('/', function () {
@@ -26,10 +28,13 @@ Route::get('tainers', function () {
 });
 Route::post('/', [ContactController::class, 'store'])->name('contact.store');
 
-Route::prefix('admin')->group(function () {
-    Route::get('dashboard', function () {
-        return view('admin.dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::resource('users', AdminUserController::class)->middleware(['auth']);
 });
 
 Route::middleware('auth')->group(function () {
