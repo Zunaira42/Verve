@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\UserController as AdminUserController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpKernel\HttpCache\Store;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+// route::get('/mail', [MailController::class, 'sendmail']);
 
 Route::get('/', function () {
     return view('app.index');
@@ -27,6 +29,7 @@ Route::get('tainers', function () {
     return view('app.trainer');
 });
 Route::post('/', [ContactController::class, 'store'])->name('contact.store');
+
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
 

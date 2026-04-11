@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Contact;
-use Faker\Guesser\Name;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -36,15 +37,12 @@ class ContactController extends Controller
             'subject' => 'required|string',
             'message' => 'required',
         ]);
-        Contact::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_num' => $request->phone_num,
-            'subject'      => $request->subject,
-            'message' => $request->message,
-        ]);
-        // return back()->with('success', 'save contact');
-        return response()->json(['message' => 'Your message has been sent successfully!']);
+        Contact::create($request->all());
+        $to = $request->email;
+        $msg = 'WElcome to the Verve fitness platform';
+        $subject = 'Thanks For Contact';
+        Mail::to($to)->send(new ContactMail($msg, $subject));
+        return response()->json(['status' => 'success', 'message' => 'Message sent successfully']);
     }
 
     /**
