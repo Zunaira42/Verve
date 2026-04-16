@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('trainers', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->boolean('is_enabled')->default(true);
+            $table->string('image')->nullable();
             $table->string('name');
             $table->string('role');
             $table->text('description');
             $table->string('experience');
             $table->string('speciality');
             $table->string('certification');
-            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

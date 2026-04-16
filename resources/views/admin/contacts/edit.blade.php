@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Users')
-@section('page-title', 'Users')
+@section('title', 'Contact')
+@section('page-title', 'Contact')
 @section('styles')
 <style>
     .table td {
@@ -41,34 +41,43 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Edit User</h3>
+                    <h3 class="card-title">Edit Contact</h3>
                 </div>
 
-                <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+                <form action="{{ route('admin.contacts.update', $contact->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-
                     <div class="card-body">
 
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control" required>
+                            <input type="text" name="name" value="{{ old('name', $contact->name) }}" class="form-control" required>
                         </div>
 
                         <div class="form-group mt-2">
                             <label>Email</label>
-                            <input type="email" name="email" value="{{ old('email', $user->email) }}" class="form-control" required>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control">
+                            <input type="email" name="email" value="{{ old('email', $contact->email) }}" class="form-control" required>
                         </div>
 
+                        <div class="form-group mt-2">
+                            <label>Phone Number</label>
+                            <input type="text" name="phone_num" value="{{ old('phone_num', $contact->phone_num) }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label>Subject</label>
+                            <input type="text" name="subject" value="{{ old('subject', $contact->subject) }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label>Message</label>
+                            <input type="text" name="message" value="{{ old('message', $contact->message) }}" class="form-control" required>
+                        </div>
                     </div>
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary mt-3 mb-2">Update</button>
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary mt-3 mb-2">Back</a>
+                        <a href="{{ route('admin.contacts.index') }}" class="btn btn-secondary mt-3 mb-2">Back</a>
                     </div>
                 </form>
             </div>

@@ -27,14 +27,13 @@ class UserController extends Controller
             'email' => 'required|email|max:255',
             'password' => 'nullable|min:6|confirmed',
         ]);
-         if (!empty($validated['password'])) {
-        $validated['password'] = Hash::make($validated['password']);
-    } else {
-        unset($validated['password']); // agar empty ho
-    }
+        if (!empty($validated['password'])) {
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']); // agar empty ho
+        }
         $user->update($validated);
         return redirect()->route('admin.users.index')
             ->with('success', 'User updated successfully');
     }
 }
-

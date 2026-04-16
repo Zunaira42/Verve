@@ -1,27 +1,9 @@
 @extends('layouts.app')
-@section('title', 'School of Enablers | Users')
+@section('title', 'Verve | Contact')
 @section('styles')
 <style>
-    .table td {
-        vertical-align: middle;
-    }
 
-    .product-image-thumbs {
-        margin-top: 0;
-    }
 
-    .product-image-thumb {
-        margin-right: inherit;
-        padding: .2rem;
-        max-width: 4rem;
-    }
-
-    .card-title {
-        font-size: 25px;
-        font-weight: 500;
-        align-items: center;
-        margin: auto;
-    }
 </style>
 @endsection
 
@@ -29,12 +11,13 @@
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col-12">
-            <!-- Default box start-->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Users</h3>
-                    <div class="card-tools">
-
+                    <h3 class="card-title d-inline">Contacts</h3>
+                    <div class="card-tools float-right">
+                        <a href="{{ route('admin.contacts.create') }}" class="btn btn-primary btn-sm">
+                            Create Contact
+                        </a>
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
@@ -44,18 +27,20 @@
                                 <th class="text-center">No.</th>
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Email</th>
+                                <th class="text-center">Phone Number</th>
                                 <th class="text-center">Created Date</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
+                            @foreach($contacts as $contact)
                             <tr>
-                                <td class="text-center">{{$user->id}}</td>
-                                <td class="text-center">{{$user->name}}</td>
-                                <td class="text-center">{{$user->email}}</td>
-                                <td class="text-center">{{$user->created_at->format('Y-m-d') }}</td>
-                                <td class="text-center"> <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-sm btn-primary">Edit</a></td>
+                                <td class="text-center">{{$contact->id}}</td>
+                                <td class="text-center">{{$contact->name}}</td>
+                                <td class="text-center">{{$contact->email}}</td>
+                                <td class="text-center">{{$contact->phone_num}}</td>
+                                <td class="text-center">{{$contact->created_at->format('Y-m-d') }}</td>
+                                <td class="text-center"> <a href="{{route('admin.contacts.edit',$contact->id)}}" class="btn btn-sm btn-primary">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>

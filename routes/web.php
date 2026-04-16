@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\admin\UserController as AdminUserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
@@ -29,16 +28,6 @@ Route::get('tainers', function () {
     return view('app.trainer');
 });
 Route::post('/', [ContactController::class, 'store'])->name('contact.store');
-
-
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::resource('users', AdminUserController::class)->middleware(['auth']);
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

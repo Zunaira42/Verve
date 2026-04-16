@@ -14,6 +14,37 @@
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('styles')
+    <style>
+        main {
+            background-color: lightgray !important;
+        }
+
+        .card {
+            border: 3px solid black;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .product-image-thumbs {
+            margin-top: 0;
+        }
+
+        .product-image-thumb {
+            margin-right: inherit;
+            padding: .2rem;
+            max-width: 4rem;
+        }
+
+        .card-title {
+            font-size: 25px;
+            font-weight: 800;
+            align-items: center;
+            margin: auto;
+            color: black;
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased">
@@ -27,13 +58,13 @@
 
             <nav class="flex-1 px-4 py-6 space-y-2">
                 <a href="#" class="block px-3 py-2 hover:bg-orange-600 rounded font-semibold text-lg">Dashboard</a>
-                <a href="#" class="block px-3 py-2 hover:bg-orange-600 rounded font-semibold text-lg">Users</a>
-                <a href="#" class="block px-3 py-2 hover:bg-orange-600 rounded font-semibold text-lg">Orders</a>
-                <a href="#" class="block px-3 py-2 hover:bg-orange-600 rounded font-semibold text-lg">Campus</a>
+                <a href="{{route('admin.users.index')}}" class="block px-3 py-2 hover:bg-orange-600 rounded font-semibold text-lg">Users</a>
+                <a href="{{route('admin.contacts.index')}}" class="block px-3 py-2 hover:bg-orange-600 rounded font-semibold text-lg">Contacts</a>
+                <a href="{{route('admin.trainers.index')}}" class="block px-3 py-2 hover:bg-orange-600 rounded font-semibold text-lg">Trainers</a>
             </nav>
         </aside>
         <div class="flex-1 flex flex-col">
-           
+
             <header class="h-20 bg-black flex items-center justify-between px-6 text-white border-b border-gray-800">
                 <h2 class="text-xl font-semibold">
                     @yield('page-title')
@@ -56,10 +87,8 @@
                 </div>
             </div>
             @endif
-
-
             <main>
-                {{ $slot }}
+                @yield('content')
             </main>
 
         </div>

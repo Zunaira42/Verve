@@ -1,40 +1,18 @@
 @extends('layouts.app')
-@section('title', 'School of Enablers | Users')
+@section('title', 'Verve | trainer')
 @section('styles')
-<style>
-    .table td {
-        vertical-align: middle;
-    }
-
-    .product-image-thumbs {
-        margin-top: 0;
-    }
-
-    .product-image-thumb {
-        margin-right: inherit;
-        padding: .2rem;
-        max-width: 4rem;
-    }
-
-    .card-title {
-        font-size: 25px;
-        font-weight: 500;
-        align-items: center;
-        margin: auto;
-    }
-</style>
 @endsection
-
 @section('content')
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col-12">
-            <!-- Default box start-->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Users</h3>
-                    <div class="card-tools">
-
+                    <h3 class="card-title d-inline">Trainers</h3>
+                    <div class="card-tools float-right">
+                        <a href="{{ route('admin.trainers.create') }}" class="btn btn-primary btn-sm">
+                            Create Trainer
+                        </a>
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
@@ -43,19 +21,21 @@
                             <tr>
                                 <th class="text-center">No.</th>
                                 <th class="text-center">Name</th>
-                                <th class="text-center">Email</th>
+                                <th class="text-center">Role</th>
+                                <th class="text-center">Description</th>
                                 <th class="text-center">Created Date</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
+                            @foreach($trainers as $trainer)
                             <tr>
-                                <td class="text-center">{{$user->id}}</td>
-                                <td class="text-center">{{$user->name}}</td>
-                                <td class="text-center">{{$user->email}}</td>
-                                <td class="text-center">{{$user->created_at->format('Y-m-d') }}</td>
-                                <td class="text-center"> <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-sm btn-primary">Edit</a></td>
+                                <td class="text-center">{{$trainer->id}}</td>
+                                <td class="text-center">{{$trainer->name}}</td>
+                                <td class="text-center">{{$trainer->role}}</td>
+                                <td class="text-center">{{$trainer->description}}</td>
+                                <td class="text-center">{{$trainer->created_at->format('Y-m-d') }}</td>
+                                <td class="text-center"> <a href="{{route('admin.trainers.edit',$trainer->id)}}" class="btn btn-sm btn-primary">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>
