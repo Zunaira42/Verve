@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('trainers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->boolean('is_enabled')->default(true);
             $table->string('image')->nullable();
             $table->string('name');
